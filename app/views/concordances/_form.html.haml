@@ -1,0 +1,22 @@
+= form_for @concordance do |f|
+  - if @concordance.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@concordance.errors.count, "error")} prohibited this concordance from being saved:"
+      %ul
+        - @concordance.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :Слово
+    = f.text_area :concordance, class: "form-control", type: "string", placeholder: "Слово"
+  .field
+    = f.label :Конкорданс
+    = f.text_area :concordance, class: "form-control", type: "text", placeholder: "Конкорданс"
+  .field
+    = f.label :Лемма?
+    = f.check_box :is_it_lemma, type: "checkbox"
+  .field
+    = f.label :Ширина
+    = f.number_field :width, class: "form-control", type: "integer", placeholder: "Введите ширину (число)"
+  .actions
+    = f.submit 'Сохранить', class: "btn btn-light"

@@ -1,0 +1,14 @@
+%p#notice= notice
+
+%p
+  %b Книга:
+  = @frequency_vocabulary.book.name
+%p
+  %b Частотник:
+  %br
+  = simple_format(@frequency_vocabulary.text)
+
+
+= link_to 'Изменить', edit_frequency_vocabulary_path(@frequency_vocabulary), class: "btn btn-light"
+\|
+= link_to 'Назад', frequency_vocabularies_path, class: "btn btn-light"

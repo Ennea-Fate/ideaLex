@@ -1,0 +1,23 @@
+%h1.text-center Список авторов
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"} Фио
+      %th{:scope => "col"} Описание
+      %th{:scope => "col"}
+      %th{:scope => "col"}
+      %th{:scope => "col"}
+
+  %tbody
+    - @authors.each do |author|
+      %tr
+        %td= author.first_name + " " + author.second_name + " " + author.last_name
+        %td= author.description.slice(0..30)
+        %td= link_to 'Просмотр', author, class: "btn btn-light"
+        %td= link_to 'Редактировать', edit_author_path(author), class: "btn btn-light"
+        %td= link_to 'Удалить', author, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-light"
+
+%br
+
+= link_to 'Добавить автора', new_author_path, class: "btn btn-light"

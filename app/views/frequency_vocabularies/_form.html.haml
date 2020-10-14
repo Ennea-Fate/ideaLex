@@ -1,0 +1,17 @@
+= form_for @frequency_vocabulary do |f|
+  - if @frequency_vocabulary.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@frequency_vocabulary.errors.count, "error")} prohibited this frequency_vocabulary from being saved:"
+      %ul
+        - @frequency_vocabulary.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :Частотник
+    = f.text_area :text, class: "form-control", type: "string", placeholder: "Частотник"
+  .control-group
+    = f.label :Книги, class: 'control-label'
+    .controls
+      = collection_select( :frequency_vocabulary, :book_id, Book.all, :id, :name, {  }, { :multiple => false, class: "form-control"})
+  .actions
+    = f.submit 'Сохранить', class: "btn btn-light"

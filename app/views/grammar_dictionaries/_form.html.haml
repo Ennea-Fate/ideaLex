@@ -1,0 +1,17 @@
+= form_for @grammar_dictionary do |f|
+  - if @grammar_dictionary.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@grammar_dictionary.errors.count, "error")} prohibited this grammar_dictionary from being saved:"
+      %ul
+        - @grammar_dictionary.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :"Грамматический словарь"
+    = f.text_area :dictionary, class: "form-control", type: "text", placeholder: "Грамматический словарь"
+  .control-group
+    = f.label :Книги, class: 'control-label'
+    .controls
+      = collection_select( :ethnoidiogloss, :book_id, Book.all, :id, :name, {  }, { :multiple => false, class: "form-control"})
+  .actions
+    = f.submit 'Сохранить', class: "btn btn-light"

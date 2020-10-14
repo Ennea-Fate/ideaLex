@@ -1,0 +1,13 @@
+%p#notice= notice
+
+%p.text-center 
+  %b
+    = @author.first_name + " " + @author.second_name + " " + @author.last_name
+
+%p
+  %b Описание:
+  = @author.description
+
+= link_to 'Изменить', edit_author_path(@author), class: "btn btn-light"
+\|
+= link_to 'Назад', authors_path, class: "btn btn-light"

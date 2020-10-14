@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p.text-center
+  %b Слово:
+  = @ethnoidiogloss.word
+%p
+  %b Описание:
+  = @ethnoidiogloss.description
+%p
+  %b Статус:
+  = @ethnoidiogloss.status
+%p
+  %b Автор:
+  = @ethnoidiogloss.author
+%p
+  %b User:
+  = @ethnoidiogloss.user
+%p
+  %b Книги:
+  = @ethnoidiogloss.book
+
+= link_to 'Изменить', edit_ethnoidiogloss_path(@ethnoidiogloss), class: "btn btn-light"
+\|
+= link_to 'Назад', ethnoidioglosses_path, class: "btn btn-light"

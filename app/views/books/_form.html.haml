@@ -1,0 +1,37 @@
+= form_for @book do |f|
+  - if @book.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@book.errors.count, "error")} prohibited this book from being saved:"
+      %ul
+        - @book.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :Название
+    = f.text_field :name, class: "form-control", type: "string", placeholder: "Название", id: "inputGroupFile01"
+  .field
+    = f.label :Файл
+    = f.file_field :book_file, class: "form-control", type: "file"
+    
+  .control-group
+    = f.label :Автор, class: 'control-label'
+    .controls
+      = collection_select( :book, :author_id, Author.all, :id, :name_with_initial, {  }, { :multiple => false, class: "form-control"})
+    
+      -# .field
+      -#   = f.label :Автор
+      -#   = f.collection_select(:author_id, Author.all, id:, :name_with_initial, prompt: true), class: "form-control", type: "string", placeholder: "Автор"
+
+    
+
+    -# .form-group
+    -#   %label{:for => "exampleFormControlSelect1"} Автор
+    -#   %select#exampleFormControlSelect1.form-control
+        -# - Author.all.each do |author|
+        -#   %option= author.first_name + " " + author.second_name + " " + author.last_name
+
+        -#   collection_select(:post, :author_id, Author.all, :id, :name_with_initial, prompt: true)
+
+
+  .actions
+    = f.submit 'Сохранить', class: "btn btn-light"

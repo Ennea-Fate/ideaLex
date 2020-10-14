@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p.text-center 
+  %b 
+    = @book.name
+%p
+  %b Текст:
+  = @book.text
+%p
+  %b Автор:
+  = @book.author
+
+= link_to 'Изменить', edit_book_path(@book), class: "btn btn-light"
+\|
+= link_to 'Назад', books_path, class: "btn btn-light"

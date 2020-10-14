@@ -1,0 +1,40 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  %a.navbar-brand{:href => root_path} ideaLex
+  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto
+      -# %li.nav-item.active
+      -#   %a.nav-link{:href => "#"}
+      -#     Home
+      -#     %span.sr-only (current)
+      %li.nav-item
+        %a.nav-link{:href => authors_path} Авторы
+      %li.nav-item
+        %a.nav-link{:href => books_path} Книги
+      %li.nav-item
+        %a.nav-link{:href => ethnoidioglosses_path} Этноидиоглоссарий
+      %li.nav-item.dropdown
+        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          Исследования
+        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          %a.dropdown-item{:href => grammar_dictionaries_path} Грамматический словарь
+          %a.dropdown-item{:href => frequency_vocabularies_path} Частотный словник
+          %a.dropdown-item{:href => concordances_path} Конкордансы
+          .dropdown-divider
+          %a.dropdown-item{:href => notebooks_path} Блокнот
+      %li.nav-item
+        %a.nav-link.disabled{"aria-disabled" => "true", :href => "#", :tabindex => "-1"} Disabled
+    = form_tag search_engine_index_path, method: :get, role: "search", class: "form-inline my-2 my-lg-0 " do
+      = text_field_tag(:search, params[:search], {:class=> "form-control mr-sm-2", :type => "search", :placeholder => "Поиск", :"aria-label" => "Поиск"})
+      = submit_tag("Искать", {:class => "btn btn-outline-success my-2 my-sm-0"})
+  - if current_user
+    .btn-group
+      %a.btn.btn-primary{:href => "#", :type => "button", :role => "button"} 
+        = current_user.f_name + " " + current_user.s_name
+      = link_to logout_path, class: "btn btn-primary" do
+        %i.fa.fa-sign-out.fa-lg
+  - else
+    .btn-group
+      %a.btn{:href => login_path, :type => "button", :role => "button"} Войти
+      %a.btn{:href => signup_path, :type => "button"} Регистрация

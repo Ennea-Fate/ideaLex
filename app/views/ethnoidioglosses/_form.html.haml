@@ -1,0 +1,41 @@
+= form_for @ethnoidiogloss do |f|
+  - if @ethnoidiogloss.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@ethnoidiogloss.errors.count, "error")} prohibited this ethnoidiogloss from being saved:"
+      %ul
+        - @ethnoidiogloss.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :Слово
+    = f.text_field :word, class: "form-control", type: "string", placeholder: "Слово"
+  .field
+    = f.label :Описание
+    = f.text_area :description, class: "form-control", type: "text", placeholder: "Описание"
+  .field
+    = f.label :Статус
+    = f.number_field :status, class: "form-control", type: "integer", placeholder: "Статус"
+  .control-group
+    = f.label :Автор, class: 'control-label'
+    .controls
+      = collection_select( :book, :author_id, Author.all, :id, :name_with_initial, {  }, { :multiple => false, class: "form-control"})
+
+  .control-group
+    = f.label :Специалист, class: 'control-label'
+    .controls
+      = collection_select( :ethnoidiogloss, :user_id, User.all, :id, :name_with_initial, {  }, { :multiple => false, class: "form-control"})
+
+  
+  -# .field
+  -#   = f.label :user
+  -#   = f.text_field :user
+  .control-group
+    = f.label :Книги, class: 'control-label'
+    .controls
+      = collection_select( :ethnoidiogloss, :book_id, Book.all, :id, :name, {  }, { :multiple => false, class: "form-control"})
+
+    -# .field
+    -#   = f.label :Книги
+    -#   = f.text_field :books
+  .actions
+    = f.submit 'Сохранить', class: "btn btn-light"

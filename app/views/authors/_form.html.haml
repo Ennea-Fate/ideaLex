@@ -1,0 +1,22 @@
+= form_for @author do |f|
+  - if @author.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@author.errors.count, "error")} prohibited this author from being saved:"
+      %ul
+        - @author.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :Имя
+    = f.text_field :first_name, class: "form-control", type: "string", placeholder: "Имя"
+  .field
+    = f.label :Фамилия
+    = f.text_field :second_name, class: "form-control", type: "string", placeholder: "Фамилия"
+  .field
+    = f.label :Отчество
+    = f.text_field :last_name, class: "form-control", type: "string", placeholder: "Отчество"
+  .field
+    = f.label :Описание
+    = f.text_area :description, class: "form-control", type: "text", placeholder: "Описание"
+  .actions
+    = f.submit 'Сохранить', class: "btn btn-light"

@@ -1,0 +1,23 @@
+%h1.text-center Список пользователей
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"} ФИО
+      %th{:scope => "col"} Роль
+      %th{:scope => "col"}
+      %th{:scope => "col"}
+      %th{:scope => "col"}
+
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.first_name + " " + user.second_name + " " user.last_name
+        %td= user.role
+        %td= link_to 'Просмотр', user, class: "btn btn-light"
+        %td= link_to 'Редактировать', edit_user_path(user), class: "btn btn-light"
+        %td= link_to 'Удалить', user, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-light"
+
+%br
+
+= link_to 'Добавить пользователя', new_user_path, class: "btn btn-light"

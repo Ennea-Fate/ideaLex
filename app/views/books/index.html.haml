@@ -1,0 +1,45 @@
+%h1.text-center Список книг
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"} Название
+      %th{:scope => "col"} Автор
+      %th{:scope => "col"}
+      %th{:scope => "col"}
+      %th{:scope => "col"}
+  %tbody
+    - @books.each do |book|
+      %tr
+        %td= book.name
+        %td= book.author.first_name + " " + book.author.second_name + " " + book.author.last_name
+        %td= link_to 'Просмотр', book, class: "btn btn-light"
+        %td= link_to 'Редактировать', edit_book_path(book), class: "btn btn-light"
+        %td= link_to 'Удалить', book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light"
+%br
+
+= link_to 'Добавить книгу', new_book_path, class: "btn btn-light"
+
+-# %h1 Listing books
+
+-# %table
+-#   %thead
+-#     %tr
+-#       %th Text
+-#       %th Author
+-#       %th
+-#       %th
+-#       %th
+
+-#   %tbody
+-#     - @books.each do |book|
+-#       %tr
+-#         %td= book.text
+-#         %td= book.author
+-#         %td= link_to 'Show', book
+-#         %td= link_to 'Edit', edit_book_path(book)
+-#         %td= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }
+
+-# %br
+
+-# = link_to 'New Book', new_book_path

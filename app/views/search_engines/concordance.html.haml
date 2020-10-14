@@ -1,0 +1,22 @@
+.container
+  .row.h-100
+    .col-xl-10.col-lg-10.col-md-12.col-sm-12.col-12
+      %h1.text-white.font-weight-bold= "Результаты поиска по запросу: " + params[:search]
+      %hr.divider.my-4/
+  %div.mb-2
+    = form_tag search_engine_concordance_path, method: :get, role: 'search', class: "form-inline my-2 my-lg-0" do
+      = text_field_tag(:search, params[:search], {:class=> "form-control mr-sm-2", :type => "search", :placeholder => "Поиск", :"aria-label" => "Поиск"})
+      = submit_tag("Искать по конкордансу", {:class => "btn btn-success my-2 my-sm-0"})
+      = link_to 'Назад', conc_words_path, class: "btn btn-light ml-2"
+  %table.table.text-white
+    %thead.thead-light
+      %tr
+        %th{:scope => "col"} Слово 
+        %th{:scope => "col"} Произведение 
+        %th{:scope => "col"} 
+    %tbody
+      - @search_results.each do |result|
+        %tr
+          %td= result.word
+          %td= result.concordance.book.name
+          %td= link_to "Просмотр", result, class: "btn btn-light"

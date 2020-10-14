@@ -1,0 +1,21 @@
+%h1.text-center Список частотников слов
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"} Книга
+      %th{:scope => "col"}
+      %th{:scope => "col"}
+      %th{:scope => "col"}
+
+  %tbody
+    - @frequency_vocabularies.each do |frequency_vocabulary|
+      %tr
+        %td= frequency_vocabulary.book.name
+        %td= link_to 'Просмотр', frequency_vocabulary, class: "btn btn-light"
+        %td= link_to 'Редактировать', edit_frequency_vocabulary_path(frequency_vocabulary), class: "btn btn-light"
+        %td= link_to 'Удалить', frequency_vocabulary, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-light"
+
+%br
+
+= link_to 'Добавить частотник', new_frequency_vocabulary_path, class: "btn btn-light"

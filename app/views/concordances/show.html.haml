@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p.text-center 
+  %b Слово:
+  = @concordance.word
+%p
+  %b Конкорданс:
+  = @concordance.concordance
+%p
+  %b Лемма?:
+  = @concordance.is_it_lemma
+%p
+  %b Ширина:
+  = @concordance.width
+
+= link_to 'Изменить', edit_concordance_path(@concordance), class: "btn btn-light"
+\|
+= link_to 'Назад', concordances_path, class: "btn btn-light"

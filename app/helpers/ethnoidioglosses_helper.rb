@@ -1,0 +1,2 @@
+module EthnoidioglossesHelper
+end

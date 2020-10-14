@@ -1,0 +1,24 @@
+%h1.text-center Блокноты
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th{:scope => "col"} Название
+      %th{:scope => "col"} Описание
+      -# %th{:scope => "col"} User
+      %th{:scope => "col"}
+      %th{:scope => "col"}
+      %th{:scope => "col"}
+  %tbody
+    - @notebooks.each do |notebook|
+      %tr
+        %td= notebook.name
+        %td= notebook.description
+        -# %td= notebook.user
+        %td= link_to 'Просмотр', notebook, class: "btn btn-light"
+        %td= link_to 'Редактировать', edit_notebook_path(notebook), class: "btn btn-light"
+        %td= link_to 'Удалить', notebook, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-light"
+
+%br
+
+= link_to 'Создать блокнот', new_notebook_path, class: "btn btn-light"

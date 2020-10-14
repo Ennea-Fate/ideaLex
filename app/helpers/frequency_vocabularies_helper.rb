@@ -1,0 +1,2 @@
+module FrequencyVocabulariesHelper
+end

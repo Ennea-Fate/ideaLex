@@ -1,0 +1,31 @@
+%h1.text-center Этноидиоглоссарий
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"} Слово
+      %th{:scope => "col"} Описание
+      %th{:scope => "col"} Статус
+      %th{:scope => "col"} Автор
+      %th{:scope => "col"} Книга
+      %th{:scope => "col"} Специалист
+      %th{:scope => "col"}
+      %th{:scope => "col"}
+      %th{:scope => "col"}
+
+  %tbody
+    - @ethnoidioglosses.each do |ethnoidiogloss|
+      %tr
+        %td= ethnoidiogloss.word
+        %td= ethnoidiogloss.description.slice(0..15)
+        %td= ethnoidiogloss.status
+        %td= ethnoidiogloss.author
+        %td= ethnoidiogloss.book
+        %td= ethnoidiogloss.user
+        %td= link_to 'Просмотр', ethnoidiogloss, class: "btn btn-light"
+        %td= link_to 'Редактировать', edit_ethnoidiogloss_path(ethnoidiogloss), class: "btn btn-light"
+        %td= link_to 'Удалить', ethnoidiogloss, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-light"
+
+%br
+
+= link_to 'Добавить этноидиоглосс', new_ethnoidiogloss_path, class: "btn btn-light"

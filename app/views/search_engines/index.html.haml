@@ -1,0 +1,13 @@
+.container
+  .row.h-100
+    .col-lg-100.align-self-end
+      %h1.text-uppercase.text-white.font-weight-bold Результаты поиска по запросу:
+      %h2.text-white.font-weight-bold= params[:search]
+    %hr.divider.my-4/
+  .row.h-100
+    .col-lg-100.align-self-end
+      = @search_results.each do |pg_search_doc|
+        = link_to pg_search_doc.searchable.word, pg_search_doc.searchable
+        .container.text-white
+          = pg_search_doc.content
+        %hr
