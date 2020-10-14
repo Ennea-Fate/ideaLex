@@ -25,6 +25,19 @@ class ConcordancesController < ApplicationController
   # POST /concordances.json
   def create
     @concordance = Concordance.new(concordance_params)
+    @concordance_books = ConcordanceBook.new()
+    @concordance_books.book_id = concordance_params[:book_ids]
+    @concordance_books.concordance_id = @concordance.id
+    @concordance_books.created_at = DateTime.current.to_date
+    @concordance_books.updated_at = DateTime.current.to_date
+
+    s = TCPSocket.new 'localhost', 3002
+    conc_id = (Concordance.all.last.id + 1).to_s
+    book_ids = concordance_params[:book_ids]
+    word = concordance_params[:word]
+    lemma = (@concordance.is_it_lemma ? "true" : "false")
+    s.puts ("concordance/" + conc_id + "/" + book_ids.to_s + ":" + "0" + ":" + "1000" + "/" + word.to_s + "/" + lemma + "\r\n\r\n")
+    s.close
 
     respond_to do |format|
       if @concordance.save
@@ -69,6 +82,6 @@ class ConcordancesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def concordance_params
-      params.require(:concordance).permit(:concordance, :is_it_lemma, :width)
+      params.require(:concordance).permit(:concordance, :is_it_lemma, :width, :word, :page_from, :page_to, :book_ids)
     end
 end

@@ -6,12 +6,13 @@
         - @grammar_dictionary.errors.full_messages.each do |message|
           %li= message
 
-  .field
-    = f.label :"Грамматический словарь"
-    = f.text_area :dictionary, class: "form-control", type: "text", placeholder: "Грамматический словарь"
+  .d-none
+    .field
+      = f.label :"Грамматический словарь"
+      = f.text_area :dictionary, class: "form-control", type: "text", placeholder: "Грамматический словарь", value: "Выполняеться подготовка грамматического словаря"
   .control-group
-    = f.label :Книги, class: 'control-label'
+    = f.label :Книга, class: 'control-label'
     .controls
-      = collection_select( :ethnoidiogloss, :book_id, Book.all, :id, :name, {  }, { :multiple => false, class: "form-control"})
+      = collection_select(:grammar_dictionary, :book_id, Book.all, :id, :name, {  }, { :multiple => false, class: "form-control"})
   .actions
     = f.submit 'Сохранить', class: "btn btn-light"

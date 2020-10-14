@@ -1,11 +1,11 @@
 %p#notice= notice
 
 %p.text-center
-  %b Грамматический словарь:
-  = @grammar_dictionary.dictionary
+  %b Книга:
+  = @grammar_dictionary.book.name
 %p
-  %b Книги:
-  = @grammar_dictionary.book
+  %b Грамматический словарь:
+  = simple_format(@grammar_dictionary.dictionary)
 
 = link_to 'Изменить', edit_grammar_dictionary_path(@grammar_dictionary), class: "btn btn-light"
 \|

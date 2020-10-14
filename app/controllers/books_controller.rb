@@ -25,7 +25,7 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
-    @book.text = params[:book][:book_file].read
+    @book.text = params[:book][:book_file].read.force_encoding("windows-1251").encode("utf-8")
 
     respond_to do |format|
       if @book.save

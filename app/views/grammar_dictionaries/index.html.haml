@@ -4,7 +4,7 @@
   %thead
     %tr
       %th{:scope => "col"} Словарь
-      %th{:scope => "col"} Книги
+      %th{:scope => "col"} Книга
       %th{:scope => "col"}
       %th{:scope => "col"}
       %th{:scope => "col"}
@@ -12,8 +12,8 @@
   %tbody
     - @grammar_dictionaries.each do |grammar_dictionary|
       %tr
-        %td= grammar_dictionary.dictionary
-        %td= grammar_dictionary.book
+        %td= grammar_dictionary.dictionary[0..92]
+        %td= grammar_dictionary.book.name
         %td= link_to 'Просмотр', grammar_dictionary, class: "btn btn-light"
         %td= link_to 'Редактировать', edit_grammar_dictionary_path(grammar_dictionary), class: "btn btn-light"
         %td= link_to 'Удалить', grammar_dictionary, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-light"

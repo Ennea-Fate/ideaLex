@@ -8,15 +8,20 @@
 
   .field
     = f.label :Слово
-    = f.text_area :concordance, class: "form-control", type: "string", placeholder: "Слово"
-  .field
-    = f.label :Конкорданс
-    = f.text_area :concordance, class: "form-control", type: "text", placeholder: "Конкорданс"
+    = f.text_area :word, class: "form-control", type: "string", placeholder: "Слово"
+  -# .field
+  -#   = f.label :Конкорданс
+  -#   = f.text_area :concordance, class: "form-control", type: "text", placeholder: "Конкорданс"
   .field
     = f.label :Лемма?
     = f.check_box :is_it_lemma, type: "checkbox"
+  .control-group
+    = f.label :Произведение, class: 'control-label'
+    .controls
+      = collection_select(:concordance, :book_ids, Book.all, :id, :name, {  }, { :multiple => false, class: "form-control"})
   .field
     = f.label :Ширина
     = f.number_field :width, class: "form-control", type: "integer", placeholder: "Введите ширину (число)"
+  %br
   .actions
     = f.submit 'Сохранить', class: "btn btn-light"
