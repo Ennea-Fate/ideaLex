@@ -31,7 +31,7 @@
   - if current_user
     .btn-group
       %a.btn.btn-primary{:href => "#", :type => "button", :role => "button"} 
-        = current_user.f_name + " " + current_user.s_name
+        = current_user.first_name + " " + current_user.second_name
       = link_to logout_path, class: "btn btn-primary" do
         %i.fa.fa-sign-out.fa-lg
   - else

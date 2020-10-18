@@ -1,0 +1,7 @@
+%h1 Добро пожаловать!
+- if logged_in?
+    %h1 
+        Вы вошли как #{current_user.username}
+.btn-group{:role => 'group', :"aria-label" => 'buttong group'}
+    = button_to "Войти", '/login', method: :get, class: 'btn btn-dark'
+    = button_to "Регистрация", '/users/new', method: :get, class: 'btn btn-warning'

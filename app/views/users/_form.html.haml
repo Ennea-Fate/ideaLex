@@ -6,22 +6,23 @@
         - @user.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .field.form-group
+    = f.label "Электронная почта"
+    = f.text_field :email, class: "form-control", type: "string", placeholder: "Email"
+  .field.form-group
     = f.label :Имя
     = f.text_field :first_name, class: "form-control", type: "string", placeholder: "Имя"
-  .field
-    = f.label :Имя
-    = f.text_field :first_name, class: "form-control", type: "string", placeholder: "Имя"
-  .field
-    = f.label :Имя
-    = f.text_field :first_name, class: "form-control", type: "string", placeholder: "Имя"
-  .field
+  .field.form-group
     = f.label :Фамилия
     = f.text_field :second_name, class: "form-control", type: "string", placeholder: "Фамилия"
-  .field
+  .field.form-group
     = f.label :Отчество
     = f.text_field :last_name, class: "form-control", type: "string", placeholder: "Отчество"
-  .field
-    = f.select(:role_id, Role.all.collect {|p| [p.name, p.id]}, {include_blank: false, hide_label: true, readonly: "readonly"}, hidden: "true", value: 2)
+  .field.form-group
+    = f.label :Пароль
+    = f.password_field :password, class: "form-control masked_input_field", placeholder: "Пароль"
+  -# .field.form-group
+  -#   = f.label :Повторите пароль
+  -#   = f.text_field :password, class: "form-control", type: "string", placeholder: "Повторите пароль"
   .actions
-    = f.submit 'Зарегистрироваться', class: "btn btn-light"
+    = f.submit 'Зарегистрироваться', class: "btn btn-warning"

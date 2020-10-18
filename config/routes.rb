@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   get 'search_engine/frequency_vocabulary', to: 'search_engine#frequency_vocabulary', as: 'search_engine_frequency_vocabulary'
   get 'search_engine/grammar_dictionaries', to: 'search_engine#grammar_dictionaries', as: 'search_engine_dictionaries'
   
+  # get the authentification block
+  resources :users, only: [:new, :create]  
+  get 'login', to: 'sessions#new', as: 'signup'
+  post 'login', to: 'sessions#create'  
+  get 'welcome', to: 'sessions#welcome'
+  get 'authorized', to: 'sessions#page_requires_login'
+  get 'logout', to: 'sessions#destroy'
   
   # get 'welcome/testpage'
   get 'welcome/index'
@@ -22,8 +29,5 @@ Rails.application.routes.draw do
   resources :roles
   resources :sessions, only: [:new, :create, :destroy]
 
-  get 'signup', to: 'users#new', as: 'signup'
-  get 'login', to: 'sessions#new', as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
