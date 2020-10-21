@@ -1,0 +1,25 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @multimedia.name
+%p
+  - if (@multimedia.kindof == 1)
+    = video_tag(url_for(@multimedia.file), size: "400x400", controls: '')
+  - if (@multimedia.kindof == 2)
+    = image_tag(url_for(@multimedia.file), {style: "max-width:100%; max-height:100%"})
+  - if (@multimedia.kindof == 3)
+    = audio_tag(url_for(@multimedia.file), controls: "")
+%p
+  %b Description:
+  = @multimedia.description
+%p
+  %b Tags:
+  = @multimedia.tags
+%p
+  %b Type:
+  = @multimedia.kindof
+
+= link_to 'Edit', edit_multimedia_path(@multimedia)
+\|
+= link_to 'Back', multimedia_index_path

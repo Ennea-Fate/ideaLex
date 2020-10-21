@@ -1,0 +1,23 @@
+%h1 Список мультимедийных объектов
+
+%table
+  %thead
+    %tr
+      %th Название
+      %th Тип
+      %th
+      %th
+      %th
+
+  %tbody
+    - @multimedia.each do |multimedia|
+      %tr
+        %td= multimedia.name
+        %td= decode_file_type(multimedia.kindof)
+        %td= link_to 'Просмотр', multimedia
+        %td= link_to 'Изменить', edit_multimedia_path(multimedia)
+        %td= link_to 'Удалить', multimedia, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'Добавить мультимедийный объект', new_multimedia_path

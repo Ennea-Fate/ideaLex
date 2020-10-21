@@ -24,7 +24,7 @@
           .dropdown-divider
           %a.dropdown-item{:href => notebooks_path} Блокнот
       %li.nav-item
-        %a.nav-link.disabled{"aria-disabled" => "true", :href => "#", :tabindex => "-1"} Disabled
+        %a.nav-link{:href => multimedia_index_path} Мультимедия
     = form_tag search_engine_index_path, method: :get, role: "search", class: "form-inline my-2 my-lg-0 " do
       = text_field_tag(:search, params[:search], {:class=> "form-control mr-sm-2", :type => "search", :placeholder => "Поиск", :"aria-label" => "Поиск"})
       = submit_tag("Искать", {:class => "btn btn-outline-success my-2 my-sm-0"})
